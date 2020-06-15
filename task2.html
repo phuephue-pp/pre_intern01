@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Button disabled</title>
+        <script>
+            function test(){
+                document.getElementById('btn').disabled=false;
+            }
+            document.addEventListener('DOMContentLoaded', () => {
+                
+
+                document.querySelector('#todo-list').onsubmit = () => {
+                    var text=document.getElementById('task');
+                    if(text.value==""){
+                        document.getElementById('btn').disabled=true;
+                        return false;
+                    }
+                    else{
+                        document.getElementById('btn').disabled=false;
+
+                        const li = document.createElement('li');
+                        li.innerHTML = document.querySelector('#task').value;
+
+                        document.querySelector('#list').append(li);
+
+                        document.querySelector('#task').value = '';
+
+                        return false;
+                    }
+                };
+
+            });
+        </script>
+        <title>PreIntern Group</title>
+    </head>
+    <body>
+        <h1>To Do List</h1>
+        <ul id="list">
+        </ul>
+        <form id="todo-list">
+            <input id="task" onkeyup="test()" type="text" autofocus autocomplete="off" placeholder="Add todo-task">
+            <input type="submit" disabled id="btn">
+        </form>
+    </body>
+</html>
